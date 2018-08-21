@@ -3,13 +3,12 @@ import Pubsub from 'pubsub-js';
 
 export default class Header extends Component {
 
-    pesquisa(event) {
+    pesquisa(event){
       event.preventDefault();
-
-      fetch(`http://localhost:8080/api/puclic/fotos/${this.loginPesquisado.value}`)
+      fetch(`http://localhost:8080/api/public/fotos/${this.loginPesquisado.value}`)
         .then(response => response.json())
         .then(fotos => {
-          PubSub.publish('timeline', fotos);
+          Pubsub.publish('timeline',fotos);
         });
     }
 
@@ -17,7 +16,7 @@ export default class Header extends Component {
         return (
         <header className="header container">
           <h1 className="header-logo">
-            Insta
+            Instalura
           </h1>
 
           <form className="header-busca" onSubmit={this.pesquisa.bind(this)}>
